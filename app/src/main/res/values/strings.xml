@@ -10,5 +10,13 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="welcome_greeting">Welcome to Knowledge Enhancer App</string>
-    <string name="start_button_text">Start</string>
+    <string name="start_button_text">Get Started</string>
+    <string name="main_screen_greeting">Hello Ân!</string>
+    <string name="main_screen_title">Let\'s train your brain and expand your vocabulary</string>
+    <string name="create_name_button_text">Create Name</string>
+    <string name="app_name_greeting_screen">Knowledge Enhancer</string>
+    <string name="greeting1">Welcome</string>
+    <string name="greeting2">We hope you enjoy our app</string>
+    <string name="enter_your_player_name">Enter your player name?</string>
+    <string name="submit_button">Submit</string>
 </resources>

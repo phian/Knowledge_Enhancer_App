@@ -1,38 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <AbsoluteLayout
+    <LinearLayout
         android:id="@+id/absoluteLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F3F5F9"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome_greeting"
-            android:textAlignment="center"
-            android:textSize="30sp" />
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:translationX="5dp"
+            android:src="@drawable/study"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Back ground image"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textColor="#3E3936"
+            android:textSize="25sp"
+            app:fontFamily="@font/open_sans_semibold"
+            android:text="@string/main_screen_greeting"/>
+
+        <TextView
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:text="@string/main_screen_title"
+            android:textAlignment="center"
+            android:textColor="#3E3936"
             android:textSize="30sp"
-            android:layout_x="80dp"
-            android:layout_y="300dp"/>
+            app:fontFamily="@font/open_sans_semibold" />
+
+
 
         <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="167dp"
-            android:layout_y="525dp"
-            android:text="@string/start_button_text" />
+            android:id="@+id/start_button"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            app:cornerRadius="30dp"
+            android:text="@string/start_button_text"
+            android:layout_gravity="center"
+            android:shadowColor="@android:color/transparent"
+            android:backgroundTint="#5258D7"
+            android:textColor="@android:color/white"
+            app:fontFamily="@font/open_sans_semibold"
+            android:textSize="22sp"
+            android:layout_marginTop="100dp"
+            android:textAllCaps="false"/>
 
-    </AbsoluteLayout>
+    </LinearLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout >
