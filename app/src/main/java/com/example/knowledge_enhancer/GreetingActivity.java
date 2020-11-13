@@ -43,6 +43,21 @@ public class GreetingActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        Handler delayBeforeChangeScreen = new Handler();
+        delayBeforeChangeScreen.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(GreetingActivity.this, MainActivity.class);
+                startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        }, 500);
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
 
@@ -55,7 +70,5 @@ public class GreetingActivity extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         }, 500);
-
-        finish();
     }
 }
