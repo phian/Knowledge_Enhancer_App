@@ -38,6 +38,7 @@ public class GreetingActivity2 extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(GreetingActivity2.this, GreetingActivity.class);
+                finish();
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

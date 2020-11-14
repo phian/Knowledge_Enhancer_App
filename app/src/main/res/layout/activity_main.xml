@@ -15,10 +15,12 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="400dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitCenter"
             android:translationX="5dp"
-            android:src="@drawable/study"/>
+            android:src="@drawable/study_online"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,7 +59,7 @@
             android:textColor="@android:color/white"
             app:fontFamily="@font/open_sans_semibold"
             android:textSize="22sp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:textAllCaps="false"/>
 
     </LinearLayout>

@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +53,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="50dp"
-            android:layout_marginBottom="160dp">
+            android:layout_marginBottom="145dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,7 +85,7 @@
             android:layout_width="150dp"
             android:layout_height="70dp"
             android:text="@string/next"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="20dp"
             tools:ignore="MissingConstraints"
             app:cornerRadius="360dp"
             android:shadowDy="0.5"
