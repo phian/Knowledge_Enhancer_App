@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="8dp"
+        android:translationY="-110dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="340dp">
+
+            <ImageView
+                android:id="@+id/vocab_menu_item_image"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:src="@drawable/jobs"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/vocab_menu_item_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#3E3936"
+                android:layout_below="@id/vocab_menu_item_image"
+                android:layout_marginTop="10dp"
+                android:text="Jobs"
+                android:textSize="35sp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

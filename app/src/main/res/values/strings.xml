@@ -19,4 +19,6 @@
     <string name="greeting2">We hope you enjoy our app</string>
     <string name="enter_your_player_name">Enter your player name?</string>
     <string name="submit_button">Submit</string>
+    <string name="high_score">High Score:</string>
+    <string name="play_button_text">Play</string>
 </resources>

@@ -8,23 +8,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Knowledge_Enhancer">
-        <activity android:name=".GreetingActivity2"
-            android:theme="@style/Theme.Knowledge_Enhancer.NoActionBar"
+        android:theme="@style/Theme.Knowledge_Enhancer.NoActionBar">
+        <activity android:name=".GameMenuScreen">
+        </activity>
+        <activity
+            android:name=".GreetingActivity2"
             android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".GreetingActivity"
-            android:theme="@style/Theme.Knowledge_Enhancer.NoActionBar"
             android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.Knowledge_Enhancer.NoActionBar"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="job_background_color">#FF05D2FF</color>
+    <color name="sport_background_color">#FFBFDDDD</color>
+    <color name="food_background_color">#FFFCE6AD</color>
+    <color name="animal_color">#FFFFF571</color>
+    <color name="cloth_background_color">#FFFFFBDE</color>
+    <color name="country_background_color">#FFDBE8EE</color>
 </resources>
