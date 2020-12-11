@@ -13,4 +13,5 @@
     <color name="animal_color">#FFFFF571</color>
     <color name="cloth_background_color">#FFFFFBDE</color>
     <color name="country_background_color">#FFDBE8EE</color>
+    <color name="text_color">#3E3936</color>
 </resources>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GamePlay"
+    android:orientation="vertical"
+    android:background="@drawable/gameplay_background"
+    android:id="@+id/game_background_lay">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <ImageButton
+            android:id="@+id/replay_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:scaleType="centerInside"
+            android:layout_marginTop="43dp"
+            android:src="@drawable/replay_arrow" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/statistic_card"
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:id="@+id/current_question_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:textSize="25sp"
+                android:textColor="#3E3936"/>
+
+            <TextView
+                android:id="@+id/score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginLeft="230dp"
+                android:layout_marginTop="7dp"
+                android:textSize="25sp"
+                android:textColor="#3E3936"/>
+
+            <TextView
+                android:id="@+id/remainingTurn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:ignore="MissingConstraints"
+                android:text=""
+                android:textSize="25sp"
+                android:textColor="#3E3936"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="15dp"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:background="@drawable/bgquestion"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <TextView
+            android:id="@+id/topic_title"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guess the word of ... topic"
+            android:lineSpacingExtra="6dp"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:maxLines="3"
+            android:textColor="#3E3936"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skip_button"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:text="Skip"
+            android:textSize="15sp"
+            android:layout_marginTop="35dp"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/resultET"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/bgpurple"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="32sp"
+        android:textColor="#3E3936"
+        android:focusable="false"
+        android:clickable="false"
+        android:padding="10dp"
+        android:layout_marginBottom="60dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/word_description_text"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:text="Word description"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:maxLines="3"/>
+
+    <LinearLayout
+        android:id="@+id/characters_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center">
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/correctAndWrongIcon"
+        android:layout_gravity="center"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/check"/>
+
+</LinearLayout>

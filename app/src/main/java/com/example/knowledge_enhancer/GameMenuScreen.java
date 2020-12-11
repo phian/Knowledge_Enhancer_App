@@ -1,25 +1,30 @@
 package com.example.knowledge_enhancer;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Adapter;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GameMenuScreen extends AppCompatActivity {
-    ViewPager vocabMenuVP;
-    VocabMenuAdapter vocabMenuAdapter;
-    List<VocabMenuItem> items;
-    Integer[] backgroundColors = null;
-    ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+    private ViewPager vocabMenuVP;
+    private VocabMenuAdapter vocabMenuAdapter;
+    private List<VocabMenuItem> items;
+    private Integer[] backgroundColors = null;
+    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+
+    private MaterialButton playButton;
+
+    private int selectedTopicIndex; // Lưu lại topic mà ng dùng chọn
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,8 @@ public class GameMenuScreen extends AppCompatActivity {
 
         vocabMenuAdapter = new VocabMenuAdapter(items, this);
 
+        selectedTopicIndex = 0;
+
         vocabMenuVP = (ViewPager) findViewById(R.id.vp_vocab_menu);
         vocabMenuVP.setAdapter(vocabMenuAdapter);
         vocabMenuVP.setPadding(100, 0, 100, 0);
@@ -52,8 +59,12 @@ public class GameMenuScreen extends AppCompatActivity {
                                     backgroundColors[position],
                                     backgroundColors[position + 1]
                             ));
+
+                    selectedTopicIndex = position;
                 } else {
                     vocabMenuVP.setBackgroundColor(backgroundColors[backgroundColors.length - 1]);
+
+                    selectedTopicIndex = backgroundColors.length - 1;
                 }
             }
 
@@ -78,6 +89,25 @@ public class GameMenuScreen extends AppCompatActivity {
         };
 
         backgroundColors = colors_temp;
+
+        //------------------------------ Play game button-----------------------------------------//
+        playButton = (MaterialButton) findViewById(R.id.select_vocab_option_btn);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Handler delayBeforeChangeScreen = new Handler();
+                delayBeforeChangeScreen.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(GameMenuScreen.this, GamePlay.class);
+                        intent.putExtra("SelectedTopic", String.valueOf(selectedTopicIndex));
+                        finish();
+                        startActivity(intent);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    }
+                }, 500);
+            }
+        });
     }
 
     @Override
