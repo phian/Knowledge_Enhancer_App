@@ -310,20 +310,4 @@ public class GamePlay extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-        Handler delayBeforeChangeScreen = new Handler();
-        delayBeforeChangeScreen.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(GamePlay.this, GameMenuScreen.class);
-                finish();
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
-        }, 500);
-    }
 }
