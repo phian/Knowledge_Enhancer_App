@@ -101,7 +101,6 @@ public class GameMenuScreen extends AppCompatActivity {
                     public void run() {
                         Intent intent = new Intent(GameMenuScreen.this, GamePlay.class);
                         intent.putExtra("SelectedTopic", String.valueOf(selectedTopicIndex));
-                        finish();
                         startActivity(intent);
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
@@ -118,8 +117,7 @@ public class GameMenuScreen extends AppCompatActivity {
         delayBeforeChangeScreen.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(GameMenuScreen.this, GreetingActivity2.class);
-                finish();
+                Intent intent = new Intent(GameMenuScreen.this, MainActivity.class);
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

@@ -31,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (isAlreadyHadUserName() == false)
-            runGreetingActivity();
-
         // Để tạm
         startButton = (Button)findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 delayBeforeChangeScreen.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(MainActivity.this, GreetingActivity.class);
+                        Intent intent = new Intent(MainActivity.this, GameMenuScreen.class);
                         startActivity(intent);
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
@@ -82,15 +79,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    // Hàm check xem ng dùng có user name hay chưa
-    private boolean isAlreadyHadUserName() {
-        return true;
-    }
-
-    private void runGreetingActivity() {
-        Intent intent = new Intent(MainActivity.this, GreetingActivity.class);
-        startActivity(intent);
     }
 }

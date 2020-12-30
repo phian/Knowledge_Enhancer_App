@@ -319,7 +319,7 @@ public class GamePlay extends AppCompatActivity {
         delayBeforeChangeScreen.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(GamePlay.this, GreetingActivity2.class);
+                Intent intent = new Intent(GamePlay.this, GameMenuScreen.class);
                 finish();
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
