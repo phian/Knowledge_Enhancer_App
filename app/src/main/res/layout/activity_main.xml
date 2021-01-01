@@ -48,7 +48,7 @@
             android:textAlignment="center"
             android:textColor="#3E3936"
             android:textSize="28sp"
-            app:fontFamily="@font/open_sans_semibold" />
+            android:fontFamily="@font/open_sans_semibold" />
 
 
 

@@ -1,17 +1,20 @@
 package com.example.knowledge_enhancer;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +25,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GamePlay extends AppCompatActivity {
     private int pressCounter;
@@ -36,12 +40,12 @@ public class GamePlay extends AppCompatActivity {
     private List<Integer> skippedIndex; // Lưu lại các thứ tự câu hỏi ng chơi đã skip
 
     private TextView currentQuestionCount, score, remainingTurn, wordTopicTitle, wordDescription;
-    private MaterialButton skipButton;
     private ImageView correctAndWrongIcon;
     private ImageButton replayButton;
     private EditText resultET;
     private LinearLayout characterLay;
-    private LinearLayout gameBackgroundLay;
+    private FrameLayout gameBackgroundLay;
+    ImageView gamePlayBackgroundImg;
 
 
     /**
@@ -59,6 +63,7 @@ public class GamePlay extends AppCompatActivity {
 
         initGameVariables();
         initGamePlayControls();
+        initGamePlayBackground();
 
         for (String character : wordCharacters) {
             addView(((LinearLayout) findViewById(R.id.characters_lay)), character, resultET);
@@ -100,7 +105,6 @@ public class GamePlay extends AppCompatActivity {
         remainingTurn.setTypeface(fontStyle);
         wordTopicTitle.setTypeface(fontStyle);
         wordDescription.setTypeface(fontStyle);
-        skipButton.setTypeface(fontStyle);
 
         result.setTypeface(fontStyle);
         textView.setTypeface(fontStyle);
@@ -115,6 +119,7 @@ public class GamePlay extends AppCompatActivity {
 
                     result.setText(result.getText().toString() + character);
 //                        textView.startAnimation(bigsmallforth);
+                    textView.setEnabled(false);
                     textView.animate().alpha(0).setDuration(300);
                     pressCounter++;
 
@@ -177,6 +182,9 @@ public class GamePlay extends AppCompatActivity {
             score.setText("Score: " + (questionCount - 1));
 
             // Move to next word
+
+            // Đổi background
+            initGamePlayBackground();
         } else { // Nếu ng dùng trả lời sai
             resultET.setText("");
 
@@ -211,7 +219,9 @@ public class GamePlay extends AppCompatActivity {
         totalQuestion = 10;
         remainingTurnCount = answer.length();
         totalScore = 0;
-        topics = new String[]{"Jobs", "Sports", "Foods", "Animals", "Cloths", "Cities"};
+        topics = new String[]{"Jobs", "Sports", "Foods and Drinks", "Animals", "Cloths", "Cities & Countries", "Family", "School", "Languages", "Geographic Terminology",
+                "House Ware & Kitchen", "House & Garden", "Things and Materials", "Travel", "Transport", "Music", "Human Body", "Pharmacy", "Health & Diseases",
+                "Festival", "Shopping"};
         skippedIndex = new ArrayList<Integer>();
     }
 
@@ -222,12 +232,12 @@ public class GamePlay extends AppCompatActivity {
         remainingTurn = (TextView) findViewById(R.id.remainingTurn);
         wordTopicTitle = (TextView) findViewById(R.id.topic_title);
         wordDescription = (TextView) findViewById(R.id.word_description_text);
-        skipButton = (MaterialButton) findViewById(R.id.skip_button);
         correctAndWrongIcon = (ImageView) findViewById(R.id.correctAndWrongIcon);
         replayButton = (ImageButton) findViewById(R.id.replay_button);
         resultET = (EditText) findViewById(R.id.resultET);
         characterLay = (LinearLayout) findViewById(R.id.characters_lay);
-        gameBackgroundLay = (LinearLayout) findViewById(R.id.game_background_lay);
+        gameBackgroundLay = (FrameLayout) findViewById(R.id.game_background_lay);
+        gamePlayBackgroundImg = (ImageView) findViewById(R.id.game_background_img);
 
         // Ẩn icon đi
         correctAndWrongIcon.animate().alpha(0).setDuration(0).setStartDelay(0);
@@ -237,23 +247,6 @@ public class GamePlay extends AppCompatActivity {
         score.setText("Score: 0");
 
         wordTopicTitle.setText("Guess the topic of " + topics[Integer.parseInt(selectedTopic)] + " topic");
-
-        skipButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (questionCount == totalQuestion) {
-                    // Quay lại những câu chưa hoàn thành (nếu có)
-
-
-                    return;
-                }
-
-                questionCount++;
-                currentQuestionCount.setText("Question: " + questionCount + "/" + totalQuestion);
-
-                skippedIndex.add(questionCount);
-            }
-        });
 
         onReplayButtonClickListener();;
     }
@@ -309,5 +302,27 @@ public class GamePlay extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void initGamePlayBackground() {
+        int randResult = (int)(Math.random() * ((5 - 0) + 1));
+
+        switch (randResult) {
+            case 0:
+                gamePlayBackgroundImg.setImageResource(R.drawable.gameplay_background1);
+                break;
+            case 1:
+                gamePlayBackgroundImg.setImageResource(R.drawable.gameplay_background2);
+                break;
+            case 2:
+                gamePlayBackgroundImg.setImageResource(R.drawable.gameplay_background3);
+                break;
+            case 3:
+                gamePlayBackgroundImg.setImageResource(R.drawable.gameplay_background4);
+                break;
+            case 4:
+                gamePlayBackgroundImg.setImageResource(R.drawable.gameplay_background5);
+                break;
+        }
     }
 }

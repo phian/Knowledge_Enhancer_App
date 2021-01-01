@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
-        android:layout_margin="8dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="7dp"
         android:translationY="-110dp"
         app:cardElevation="10dp"
         app:cardPreventCornerOverlap="false">
@@ -23,8 +25,8 @@
                 android:id="@+id/vocab_menu_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
-                android:src="@drawable/jobs"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/animals" />
 
             <TextView
                 android:id="@+id/vocab_menu_item_text"
@@ -32,9 +34,9 @@
                 android:layout_height="wrap_content"
                 android:textColor="#3E3936"
                 android:layout_below="@id/vocab_menu_item_image"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:text="Jobs"
-                android:textSize="35sp"
+                android:textSize="25sp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"/>
 
