@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Handler;
+
 import android.view.View;
 
 import android.view.Menu;
@@ -14,8 +15,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button startButton, test;
-    DatabaseHelper databaseHelper;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         databaseHelper.getAllTopic();
 
         setContentView(R.layout.activity_main);
-
+        
         // Để tạm
         startButton = (Button)findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
