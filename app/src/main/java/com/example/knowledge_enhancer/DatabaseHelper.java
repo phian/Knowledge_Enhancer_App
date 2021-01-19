@@ -94,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String topicTitle = cursor.getString(1);
             int topicStar = cursor.getInt(2);
 
-            topics.add(new Topic(topicId,topicTitle , topicStar);
+            topics.add(new Topic(topicId,topicTitle , topicStar));
 
             cursor.moveToNext();
         }
