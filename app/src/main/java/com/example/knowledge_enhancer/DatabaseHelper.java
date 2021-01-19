@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_TOPIC_ID + " INTEGER, "
                 + "FOREIGN KEY (" + COLUMN_TOPIC_ID + ") REFERENCES " + TABLE_TOPIC + "(" + COLUMN_TOPIC_ID +"))";
 
-        String scriptInsertDatatoTableTopic= "INSERT INTO " + TABLE_TOPIC + "(" + COLUMN_TOPIC_TITLE + "," + COLUMN_TOPIC_STAR + ")  " + "VALUES " +
+        String scriptInsertDatatoTableTopic= "INSERT INTO " + TABLE_TOPIC + "(" + COLUMN_TOPIC_TITLE + ")  " + "VALUES " +
         "('Jobs'),"+
         "('Sports'),"+
         "('Food and Drinks'),"+
