@@ -1,5 +1,6 @@
 package com.example.knowledge_enhancer;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -10,6 +11,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -30,13 +32,42 @@ public class GameMenuScreen extends AppCompatActivity {
     private List<Integer> highScoreList;
     private ImageView starHighScoreImg;
 
+    DatabaseHelper databaseHelper;
+    List<Topic> topicList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_menu_screen);
+        databaseHelper = new DatabaseHelper(GameMenuScreen.this);
 
+        getAllTopic();
         initHighScoreList();
         initFirstStateForVariables();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        databaseHelper = new DatabaseHelper(GameMenuScreen.this);
+
+        getAllTopic();
+        initHighScoreList();
+        initFirstStateForVariables();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            databaseHelper = new DatabaseHelper(GameMenuScreen.this);
+
+            getAllTopic();
+            initHighScoreList();
+            initFirstStateForVariables();
+            Toast.makeText(GameMenuScreen.this, "Có qua đây nha", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void initFirstStateForVariables() {
@@ -48,15 +79,26 @@ public class GameMenuScreen extends AppCompatActivity {
         initPlayButton();
     }
 
+    // Hàm lấy tất cả topic từ database
+    private void getAllTopic() {
+        topicList = new ArrayList<Topic>();
+        try {
+            topicList = databaseHelper.getAllTopic();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    // Hàm khởi tạo high score của các topic
     private void initHighScoreList() {
         highScoreList = new ArrayList<>();
 
 //        highScoreList.add(1);
-        for(int i = 0; i < 21; i++) {
-            highScoreList.add(0);
+        for(int i = 0; i < topicList.size(); i++) {
+            highScoreList.add(topicList.get(i).getTopicStar());
+            initHighScoreStarImg(highScoreList.get(i));
         }
 
-        initHighScoreStarImg(highScoreList.get(0));
     }
 
     private void initHighScoreStarImg(int stars) {

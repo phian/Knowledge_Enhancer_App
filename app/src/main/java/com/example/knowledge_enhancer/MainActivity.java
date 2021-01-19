@@ -1,41 +1,28 @@
 package com.example.knowledge_enhancer;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.os.Handler;
-import android.util.Log;
-import android.view.DisplayCutout;
+
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowInsets;
-import android.view.WindowManager;
 import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
     Button startButton, test;
-    DatabaseHelper databaseHelper;
-    private static final String TAG = "SQLite";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.i(TAG, "#MainActivity MainActivity.onCreate ... ");
-        databaseHelper = new DatabaseHelper((MainActivity.this));
+        databaseHelper = new DatabaseHelper(MainActivity.this);
         databaseHelper.getAllTopic();
-        Log.i(TAG, "#MainActivity databaseHelper.getAllTopic() ... ");
+
+        setContentView(R.layout.activity_main);
+        
         // Để tạm
         startButton = (Button)findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {

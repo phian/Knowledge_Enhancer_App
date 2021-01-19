@@ -278,7 +278,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // select all topic
     public List<Topic> getAllTopic(){
         List<Topic> topics =new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_QUIZ ;
+        String query = "SELECT * FROM " + TABLE_TOPIC;
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -297,8 +297,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return topics;
     }
 
+    // Get topic by ID
+    public Topic getTopicByID(int id) {
+        String query = "SELECT * FROM " + TABLE_TOPIC + " WHERE COLUMN_TOPIC_ID = " + id;
+        SQLiteDatabase database = getReadableDatabase();
+        Cursor cursor = database.rawQuery(query, null);
+
+        cursor.moveToFirst();
+
+        return new Topic(cursor.getInt(0), cursor.getString(1), cursor.getInt(2));
+    }
+
     // update star topic
-    public void UpdateStarTopic(int star,int topicId){
+    public void updateStarTopic(int star,int topicId){
         String query = "UPDATE "+ TABLE_TOPIC
                 + " SET " +COLUMN_TOPIC_STAR+ " = " + star
                 + " WHERE " + COLUMN_TOPIC_ID+ " = " + topicId;
