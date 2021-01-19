@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.DisplayCutout;
 import android.view.View;
 
@@ -25,12 +26,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
     Button startButton, test;
-
+    DatabaseHelper databaseHelper;
+    private static final String TAG = "SQLite";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Log.i(TAG, "#MainActivity MainActivity.onCreate ... ");
+        databaseHelper = new DatabaseHelper((MainActivity.this));
+        databaseHelper.getAllTopic();
+        Log.i(TAG, "#MainActivity databaseHelper.getAllTopic() ... ");
         // Để tạm
         startButton = (Button)findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
