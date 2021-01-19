@@ -47,6 +47,17 @@ public class GameMenuScreen extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        databaseHelper = new DatabaseHelper(GameMenuScreen.this);
+
+        getAllTopic();
+        initHighScoreList();
+        initFirstStateForVariables();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
