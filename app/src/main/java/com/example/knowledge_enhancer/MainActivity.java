@@ -1,25 +1,14 @@
 package com.example.knowledge_enhancer;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.os.Handler;
-import android.view.DisplayCutout;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.WindowInsets;
-import android.view.WindowManager;
 import android.widget.Button;
 
 
@@ -30,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseHelper = new DatabaseHelper(this);
+        databaseHelper = new DatabaseHelper(MainActivity.this);
+        databaseHelper.getAllTopic();
 
         setContentView(R.layout.activity_main);
 
