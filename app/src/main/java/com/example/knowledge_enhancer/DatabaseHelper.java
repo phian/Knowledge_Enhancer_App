@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_TOPIC_ID + " INTEGER, "
                 + "FOREIGN KEY (" + COLUMN_TOPIC_ID + ") REFERENCES " + TABLE_TOPIC + "(" + COLUMN_TOPIC_ID +"))";
 
-        String scriptInsertDataToTableTopic= "INSERT INTO " + TABLE_TOPIC + "(" + COLUMN_TOPIC_TITLE + "," + COLUMN_TOPIC_STAR + ")  " + "VALUES " +
+        String scriptInsertDatatoTableTopic= "INSERT INTO " + TABLE_TOPIC + "(" + COLUMN_TOPIC_TITLE + ")  " + "VALUES " +
         "('Jobs'),"+
         "('Sports'),"+
         "('Food and Drinks'),"+
@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         "('Cloths'),"+
         "('Cities and Countries')";
 
-        String scriptInsertDataToTableQuiz= "INSERT INTO " + TABLE_QUIZ + "(" + COLUMN_QUIZ_QUESTION + "," + COLUMN_QUIZ_ANSWER +"," + COLUMN_TOPIC_ID + ")" + "VALUES "
+        String scriptInsertDatatoTableQuiz= "INSERT INTO " + TABLE_QUIZ + "(" + COLUMN_QUIZ_QUESTION + "," + COLUMN_QUIZ_ANSWER +"," + COLUMN_TOPIC_ID + ")" + "VALUES"
                 +"('Look after the finances in an organisation,Accountants,1'),"
                 +"('Bake bread,Bakers,1'),"
                 +"('Shave mens beards and cut mens hair,Barbers,1 '),"
@@ -120,8 +120,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Execute script.
         db.execSQL(scriptCreateTopic);
         db.execSQL(scriptCreateQuiz);
-        db.execSQL(scriptInsertDataToTableTopic);
-        db.execSQL(scriptInsertDataToTableQuiz);
+        db.execSQL(scriptInsertDatatoTableTopic);
+        db.execSQL(scriptInsertDatatoTableQuiz);
        // init data topic, quiz .......
 
 
