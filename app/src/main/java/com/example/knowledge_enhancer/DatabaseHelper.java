@@ -78,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     "('Shopping')";
 
         String scriptInsertDatatoTableQuiz= "INSERT INTO " + TABLE_QUIZ + "(" + COLUMN_QUIZ_QUESTION + "," + COLUMN_QUIZ_ANSWER +"," + COLUMN_TOPIC_ID + ")" + "VALUES"
-                +"('Look after the finances in an organisation','Accoun tants','1'),"
+                +"('Look after the finances in an organisation','Accountants','1'),"
                 +"('Bake bread','Bakers','1'),"
                 +"('Shave mens beards and cut mens hair','Barbers','1 '),"
                 +"('Serve drinks','Barmen','1'),"
@@ -311,7 +311,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // update star topic
     public void updateStarTopic(int star,int topicId){
         String query = "UPDATE "+ TABLE_TOPIC
-                + " SET " +COLUMN_TOPIC_STAR+ " = " + star
+                + " SET " + COLUMN_TOPIC_STAR+ " = " + star
                 + " WHERE " + COLUMN_TOPIC_ID+ " = " + topicId;
         SQLiteDatabase db = getWritableDatabase();
 

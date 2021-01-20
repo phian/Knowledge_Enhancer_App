@@ -4,11 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
-import android.graphics.Rect;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -20,12 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButton;
+import com.example.flatdialoglibrary.dialog.FlatDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class GamePlay extends AppCompatActivity {
     private int pressCounter;
@@ -66,7 +63,9 @@ public class GamePlay extends AppCompatActivity {
         setContentView(R.layout.activity_game_play);
 
         databaseHelper = new DatabaseHelper(GamePlay.this);
+        getTopic();
         getQuizList();
+        getTopicHighScore();
 
         initGameVariables();
         initGamePlayControls();
@@ -95,7 +94,7 @@ public class GamePlay extends AppCompatActivity {
     // Hàm get các câu hỏi tương ứng với chủ đề đã chọn
     private void getQuizList() {
         try {
-            getTopic();
+//            getTopic();
             quizzes = databaseHelper.getAllQuizByTopicID((Integer.parseInt(selectedTopic) + 1));
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -106,7 +105,7 @@ public class GamePlay extends AppCompatActivity {
     // Hàm để đọc high score hiện tại từ database
     private void getTopicHighScore() {
         try {
-            currentTopic = databaseHelper.getTopicByID(Integer.parseInt(selectedTopic + 1));
+            currentTopic = databaseHelper.getTopicByID(Integer.parseInt(selectedTopic) + 1);
             currentHighScore = currentTopic.getTopicStar();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -200,13 +199,12 @@ public class GamePlay extends AppCompatActivity {
         // Nếu trl đúng
         if (resultET.getText().toString().toLowerCase().equals(answer.toLowerCase())) {
             resultET.setText("");
-            updateHighScore();
 
             correctAndWrongIcon.setImageResource(R.drawable.check);
             displayIcon();
 
             if (questionCount < totalQuestion) {
-                questionCount++;
+                ++questionCount;
                 currentQuestionCount.setText("Question: " + questionCount + "/" + totalQuestion);
             }
 
@@ -233,7 +231,44 @@ public class GamePlay extends AppCompatActivity {
 
             // Đổi background
             initGamePlayBackground();
+
+            updateHighScore();
+
+
+            if (questionCount == totalQuestion) {
+                FlatDialog flatDialog = new FlatDialog(GamePlay.this);
+                flatDialog.setTitle("Congratulations")
+                        .setIcon(R.drawable.success)
+                        .setSubtitle("You have won this topic")
+                        .setFirstButtonText("OK")
+                        .isCancelable(false)
+                        .withFirstButtonListner(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                finish();
+                            }
+                        })
+                        .show();
+            }
         } else { // Nếu ng dùng trả lời sai
+            // Chọn lại từ sai
+            answer = quizzes.get(questionCount - 1).getQuizAnswer();
+
+            remainingTurnCount = answer.length();
+            maxPressCounter = answer.replaceAll("\\W","").toCharArray().length;
+
+            wordDescription.setText(quizzes.get(questionCount - 1).getQuizQuestion());
+            wordCharacters = new char[answer.replaceAll("\\W","").toCharArray().length + 1];
+            char[] temp = answer.replaceAll("\\W","").toCharArray();
+            for (int i = 0; i < wordCharacters.length - 1; i++) {
+                wordCharacters[i] = temp[i];
+            }
+
+            // Random ký tự đánh lừa để add vào array
+            Random r = new Random();
+            wordCharacters[wordCharacters.length - 1] = (char)(r.nextInt(26) + 'a');
+            wordCharacters = shuffleArray(wordCharacters);
+
             resultET.setText("");
 
             remainingTurnCount = answer.length();
@@ -407,30 +442,34 @@ public class GamePlay extends AppCompatActivity {
 
     // Hảm kiểm tra highscore để cập nhật
     private void updateHighScore() {
-        getTopicHighScore();
         switch (currentHighScore) {
             case 0:
-                if (questionCount > 1) {
-                    databaseHelper.updateStarTopic(1, Integer.parseInt(selectedTopic + 1));
+                if (questionCount == 2) {
+                    databaseHelper.updateStarTopic(1, Integer.parseInt(selectedTopic) + 1);
+                    getTopicHighScore(); // Update lại topic high score mới
                 }
                 break;
             case 1:
-                if (questionCount > 2) {
-                    databaseHelper.updateStarTopic(2, Integer.parseInt(selectedTopic + 1));
+                if (questionCount == 3) {
+                    databaseHelper.updateStarTopic(2, Integer.parseInt(selectedTopic) + 1);
+                    getTopicHighScore(); // Update lại topic high score mới
                 }
             case 2:
-                if (questionCount > 3) {
-                    databaseHelper.updateStarTopic(3, Integer.parseInt(selectedTopic + 1));
+                if (questionCount == 4) {
+                    databaseHelper.updateStarTopic(3, Integer.parseInt(selectedTopic) + 1);
+                    getTopicHighScore(); // Update lại topic high score mới
                 }
                 break;
             case 3:
-                if (questionCount > 4) {
-                    databaseHelper.updateStarTopic(4, Integer.parseInt(selectedTopic + 1));
+                if (questionCount == 5) {
+                    databaseHelper.updateStarTopic(4, Integer.parseInt(selectedTopic) + 1);
+                    getTopicHighScore(); // Update lại topic high score mới
                 }
                 break;
             default:
-                if (questionCount > 5) {
-                    databaseHelper.updateStarTopic(5, Integer.parseInt(selectedTopic + 1));
+                if (questionCount >= 6) {
+                    databaseHelper.updateStarTopic(5, Integer.parseInt(selectedTopic) + 1);
+                    getTopicHighScore(); // Update lại topic high score mới
                 }
                 break;
         }
@@ -439,7 +478,7 @@ public class GamePlay extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         setResult(RESULT_OK);
+        finish();
     }
 }

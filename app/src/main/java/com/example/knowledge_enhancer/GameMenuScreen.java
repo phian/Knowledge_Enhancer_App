@@ -66,8 +66,18 @@ public class GameMenuScreen extends AppCompatActivity {
             getAllTopic();
             initHighScoreList();
             initFirstStateForVariables();
-            Toast.makeText(GameMenuScreen.this, "Có qua đây nha", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        databaseHelper = new DatabaseHelper(GameMenuScreen.this);
+
+        getAllTopic();
+        initHighScoreList();
+        initFirstStateForVariables();
     }
 
     private void initFirstStateForVariables() {
