@@ -1,2 +1,3 @@
 # Knowledge_Enhancer_App
-An app help you learn more knowledge around
+
+A simple English practice game that help user to learn English vocabulary in multiple topics.
